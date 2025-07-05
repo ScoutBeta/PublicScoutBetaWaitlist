@@ -1,0 +1,20 @@
+services:
+
+  waitlist:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - "3000"
+    container_name: waitlist
+    networks:
+      - scoutbeta-network
+
+
+networks:
+  scoutbeta-network:
+    external: true
+
+
