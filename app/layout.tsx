@@ -29,7 +29,6 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ opacity: fknPayMe("2025-6-12") }}
       >
         {children}
         <Toaster position="top-center" />
