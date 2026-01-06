@@ -12,7 +12,7 @@ interface WaitListRequestBody {
 export const WaitListRequest = async (body: WaitListRequestBody) => {
   try {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASEURL}/account/join-waitlist/`,
+      `${process.env.NEXT_PUBLIC_BASEURL}/accounts/join-waitlist/`,
       body,
       {
         headers: {
