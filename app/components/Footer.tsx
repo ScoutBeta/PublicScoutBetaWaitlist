@@ -1,70 +1,72 @@
+"use client";
+
 import Image from "next/image";
 import { FooterList } from "@/app/utils/footerLinks";
 import BrandLogo from "@/public/assets/scoutbeta-color-logo.png";
+import { motion } from "framer-motion";
+
+const footerItem = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 export default function Footer() {
-  const today: Date = new Date();
-  const currentYear: number = today.getFullYear();
+  const currentYear = new Date().getFullYear();
+
   return (
-    <>
-      <section className="bg-[#432818] px-4 lg:px-6 py-20">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-bold text-4xl">Scoutbeta</h2>
-          <p className="mt-4 md:mt-8 lg:mt-10 mb-4 text-xs md:text-sm xl:text-base leading-6">
-            Scoutbeta is a digital platform designed to connect location
-            managers, filmmakers, and other creative professionals with unique,
-            rentable spaces for film shoots, photoshoots, and events. Our app
-            simplifies the process of finding, booking, and managing locations
-            by bringing together a diverse catalog of properties and venues all
-            in one place.
-          </p>
-          {/* <p className="font-bold text-sm md:text-base ">
-            ISO Certification (ISO 9001, 27001).
-          </p> */}
-          {/* ======Links sections===== */}
-          <div className="border-y-[0.5px] border-slate-200 flex flex-row gap-8 md:grid md:grid-cols-3 md:gap-6 py-10 my-10">
-            <div className="text-xs md:text-sm lg:text-base flex-1 md:flex-none">
-              <Image
-                src={BrandLogo}
-                alt="scoutBeta logo"
-                width={200}
-                height={60}
-                sizes="100vw"
-                priority
-                quality={100}
-                className="mb-16 object-cover"
-              />
-              <p>© {currentYear} Scoutbeta.</p>
-              <p>All Rights Reserved</p>
-            </div>
-            {FooterList.map((item, index) => (
-              <div key={index}>
-                <h4 className="font-semibold text-xs md:text-base mb-4 whitespace-nowrap">
-                  {item.headings}
-                </h4>
-                <div>
-                  {item.subHeadings.map((item, index) => (
-                    <ul
-                      key={index}
-                      className="leading-10 text-xs md:text-sm lg:text-base"
-                    >
-                      <li
-                        className={
-                          item.includes("@") || item.includes(".com")
-                            ? "text-[#2DCA73]"
-                            : ""
-                        }
-                      >
-                        {item}
-                      </li>
-                    </ul>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+    <motion.footer
+      initial={{ opacity: 0, y: 140 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-120px" }}
+      transition={{ duration: 1 }}
+      className="bg-[#432818] px-4 py-20 text-white"
+    >
+      <div className="max-w-6xl mx-auto">
+        <h2 className="font-bold text-4xl">Scoutbeta</h2>
+
+        <p className="mt-6 max-w-3xl text-sm md:text-base leading-6">
+          Scoutbeta is a digital platform designed to connect location managers,
+          filmmakers, and creatives with unique rentable spaces.
+        </p>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ staggerChildren: 0.3, delayChildren: 0.4 }}
+          className="border-y border-white/40 py-12 my-12 grid md:grid-cols-3 gap-10"
+        >
+          <motion.div variants={footerItem}>
+            <Image
+              src={BrandLogo}
+              alt="Scoutbeta logo"
+              width={200}
+              height={60}
+              className="mb-6"
+            />
+            <p>© {currentYear} Scoutbeta.</p>
+            <p>All Rights Reserved</p>
+          </motion.div>
+
+          {FooterList.map((item, index) => (
+            <motion.div key={index} variants={footerItem}>
+              <h4 className="font-semibold mb-4">{item.headings}</h4>
+              {item.subHeadings.map((sub, i) => (
+                <p
+                  key={i}
+                  className={`leading-8 ${
+                    sub.includes("@") || sub.includes(".com")
+                      ? "text-[#2DCA73]"
+                      : ""
+                  }`}
+                >
+                  {sub}
+                </p>
+              ))}
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </motion.footer>
   );
 }
