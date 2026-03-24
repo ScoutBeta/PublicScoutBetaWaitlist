@@ -107,7 +107,7 @@ export default function ScoutShowCase() {
                   title={item.title}
                   icon={item.icon}
                   content={item.content}
-                  cardStyle="max-w-[400px] px-4"
+                  cardStyle="max-w-[400px] px-1"
                 />
               </motion.div>
             ))}

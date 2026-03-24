@@ -110,7 +110,7 @@ export default function Faq() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9 }}
-          className="bg-white px-10 py-12 rounded-2xl text-center md:w-[35%] shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+          className="bg-white px-10 mt-10 py-12 rounded-2xl text-center md:w-[35%] shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
         >
           <MessageSquare className="text-[#005F73] size-20 mx-auto" />
           <h3 className="font-bold text-2xl mt-8 text-[#161616]">
